@@ -1,0 +1,16 @@
+http {
+    upstream backend_api1 {
+        server ${API1_VM1_URL};
+        server ${API1_VM2_URL};
+    }
+
+    server {
+        listen 80 default_server;
+	listen [::]:80 default_server;
+
+        location ^~ / {
+            proxy_pass http://backend_api1;
+	    proxy_set_header Host $http_host;
+        }
+    }
+}

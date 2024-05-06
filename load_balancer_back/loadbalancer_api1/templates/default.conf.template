@@ -13,3 +13,28 @@ server {
         proxy_set_header Host $http_host;
     }
 }
+
+upstream backend_api1 {
+    server ${API1_VM1_URL};
+    # server ${API1_VM2_URL};
+}
+
+upstream backend_api2 {
+    server ${API2_VM1_URL};
+    # server ${API2_VM2_URL};
+}
+
+map $server_port $backend {
+    8080 backend_api1;
+    8081 backend_api2;
+}
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    location / {
+        proxy_pass http://$backend;
+        proxy_set_header Host $http_host;
+    }
+}

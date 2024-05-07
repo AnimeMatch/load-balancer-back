@@ -1,4 +1,6 @@
 FROM nginx:latest
-COPY default /etc/nginx/sites-available/default
-EXPOSE 80
+COPY ./templates/ /etc/nginx/templates
+COPY ./.env ./
+
+EXPOSE 8081
 CMD ["nginx", "-g", "daemon off;"]

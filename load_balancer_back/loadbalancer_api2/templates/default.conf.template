@@ -1,6 +1,6 @@
-upstream back_api{
-    server 44.204.75.67:8081;
-    server 127.0.0.1:8081;
+upstream backend_api2 {
+    server ${API2_VM1_URL};
+    server ${API2_VM2_URL};
 }
 
 server {
@@ -8,7 +8,7 @@ server {
     listen [::]:80 default_server;
 
     location ^~ / {
-        proxy_pass http://back_api/;
+        proxy_pass http://backend_api2/;
         proxy_set_header Host $http_host;
     }
 }

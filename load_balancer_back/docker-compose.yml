@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  loadbalancer_back1:
+    image: lucaslrodrigues/loadbalancer_back:api1_0.1
+    ports:
+      - "8080:80"
+    env_file:
+      - ./.env
+    networks:
+      - lb_network
+
+  loadbalancer_back2:
+    image: lucaslrodrigues/loadbalancer_back:api2_0.1
+    ports:
+      - "8081:80"
+    env_file:
+      - ./.env
+    networks:
+      - lb_network
+
+networks:
+  lb_network:
+

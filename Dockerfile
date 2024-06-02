@@ -1,5 +1,5 @@
 FROM nginx:latest
 COPY ./templates/ /etc/nginx/templates
 
-EXPOSE 8080
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

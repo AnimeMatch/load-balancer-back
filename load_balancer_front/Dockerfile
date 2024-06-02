@@ -1,4 +1,4 @@
 FROM nginx:latest
-COPY load_balancer_front/default /etc/nginx/sites-available/default
+COPY ./templates/ /etc/nginx/templates
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

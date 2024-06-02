@@ -1,10 +1,11 @@
 version: '3.8'
 
 services:
-  loadbalancer_front:
-    image: lucaslrodrigues/loadbalancer_front:0.1
+  loadbalancer_back:
+    image: lucaslrodrigues/loadbalancer_back:latest
     ports:
       - "80:80"
+      
     env_file:
       - ./.env
     networks:
@@ -12,3 +13,4 @@ services:
 
 networks:
   lb_network:
+

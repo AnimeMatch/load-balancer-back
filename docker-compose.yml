@@ -4,10 +4,7 @@ services:
   loadbalancer_back:
     image: lucaslrodrigues/loadbalancer_back:latest
     ports:
-      - "80:80"
-
-    env_file:
-      - ./.env
+      - "80:80" 
     networks:
       - lb_network
 

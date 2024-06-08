@@ -26,8 +26,8 @@ jobs:
         with:
           push: true
           tags: lucaslrodrigues/loadbalancer_back:latest
-          env:
-            API1_VM1_URL: ${{ secrets.API1_VM1_URL }}
-            API1_VM2_URL: ${{ secrets.API1_VM2_URL }}
-            API2_VM1_URL: ${{ secrets.API2_VM1_URL }}
-            API2_VM2_URL: ${{ secrets.API2_VM2_URL }}
+          build-args: |
+            API1_VM1_URL=${{ secrets.API1_VM1_URL }}
+            API1_VM2_URL=${{ secrets.API1_VM2_URL }}
+            API2_VM1_URL=${{ secrets.API2_VM1_URL }}
+            API2_VM2_URL=${{ secrets.API2_VM2_URL }}

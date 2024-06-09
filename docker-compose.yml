@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  loadbalancer_back:
+    image: lucaslrodrigues/loadbalancer_back:latest
+    ports:
+      - "80:80" 
+    networks:
+      - lb_network
+
+networks:
+  lb_network:
+

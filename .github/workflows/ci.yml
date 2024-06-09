@@ -1,0 +1,33 @@
+name: Build load balancer back end
+on:
+  pull_request:
+    branches: [ main, develop ]
+    types: [opened, reopened]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: lucaslrodrigues/loadbalancer_back:latest
+          build-args: |
+            API1_VM1_URL=${{ secrets.API1_VM1_URL }}
+            API1_VM2_URL=${{ secrets.API1_VM2_URL }}
+            API2_VM1_URL=${{ secrets.API2_VM1_URL }}
+            API2_VM2_URL=${{ secrets.API2_VM2_URL }}

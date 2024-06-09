@@ -1,0 +1,24 @@
+name: Deploy Anime Match
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [ main ]
+    types: [opened, reopened]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Pull Docker image
+        run: docker pull lucaslrodrigues/loadbalancer_back:latest
+
+      - name: Stop Docker container
+        run: docker stop load_balancer_back || true
+
+      - name: Remove Docker container
+        run: docker rm load_balancer_back || true
+
+      - name: Run Docker container 
+        run: docker run --name load_balancer_back -d -p 80:80 lucaslrodrigues/loadbalancer_back:latest

@@ -17,13 +17,13 @@ server {
     #    proxy_set_header Host $http_host;
     #}
 
-    location /apo {
+    location /apo/ {
         # rewrite ^/apo(/.*)$ $1 break;
         proxy_pass http://backend_api1/;
         proxy_set_header Host $http_host;
     }
 
-    location /api {
+    location /api/ {
         # rewrite ^/api(/.*)$ $1 break;
         proxy_pass http://backend_api2/;
         proxy_set_header Host $http_host;

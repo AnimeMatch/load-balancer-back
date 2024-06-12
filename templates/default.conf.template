@@ -18,14 +18,14 @@ server {
     #}
 
     location /apo/ {
-        rewrite ^/apo(/.*)$ $1 break;
-        proxy_pass http://backend_api1/;
+        # rewrite ^/apo/(/.*)$ $1 break;
+        proxy_pass http://backend_api1/apo/;
         proxy_set_header Host $http_host;
     }
 
     location /api/ {
-        rewrite ^/api(/.*)$ $1 break;
-        proxy_pass http://backend_api2/;
+        # rewrite ^/api/(/.*)$ $1 break;
+        proxy_pass http://backend_api2/api/;
         proxy_set_header Host $http_host;
     }
 }
